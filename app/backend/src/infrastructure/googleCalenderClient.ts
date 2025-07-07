@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
-import { GoogleCalendarInterface, GoogleCalendarEventType } from '../domain/model/googleCalenderInterface';
+import { GoogleCalenderInterface } from '../domain/model/googleCalenderInterface';
+import { GoogleCalenderEventType } from '../domain/model/googleCalenderEventType';
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
@@ -9,8 +10,8 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = path.join(__dirname, '..', '..', '..', '..', 'token.json');
 const CREDENTIALS_PATH = path.join(__dirname, '..', '..', '..', '..', 'credentials.json');
 
-export class GoogleCalendarClient implements GoogleCalendarInterface {
-  async fetchEvents(): Promise<GoogleCalendarEventType[]> {
+export class GoogleCalenderClient implements GoogleCalenderInterface {
+  async fetchEvents(): Promise<GoogleCalenderEventType[]> {
     const auth = await this.authorize();
     if (!auth) {
       throw new Error('Failed to authorize Google Calendar client.');
@@ -32,7 +33,7 @@ export class GoogleCalendarClient implements GoogleCalendarInterface {
       summary: item.summary || '',
       start: { dateTime: item.start?.dateTime || '' },
       end: { dateTime: item.end?.dateTime || '' },
-    })) as GoogleCalendarEventType[];
+    })) as GoogleCalenderEventType[];
   }
 
   // 認証を行い、OAuth2クライアントを返す
@@ -74,7 +75,7 @@ export class GoogleCalendarClient implements GoogleCalendarInterface {
 }
 
 if (require.main === module) {
-  const client = new GoogleCalendarClient();
+  const client = new GoogleCalenderClient();
   client.fetchEvents()
     .then(events => {
       console.log('Upcoming events:');

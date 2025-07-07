@@ -1,14 +1,17 @@
-import { GoogleCalendarInterface } from "../model/googleCalenderInterface";
+import { GoogleCalenderInterface } from "../model/googleCalenderInterface";
 
-export class GoogleCalendarService {
-  private googleCalendar: GoogleCalendarInterface;
+export class GoogleCalenderService {
+  private googleCalendar: GoogleCalenderInterface;
 
-  constructor (googleCalendar: GoogleCalendarInterface) {
+  constructor(googleCalendar: GoogleCalenderInterface) {
     this.googleCalendar = googleCalendar;
   }
 
-  async fetch() {
+  async createEventList(): Promise<string[]> {
     const events = await this.googleCalendar.fetchEvents();
-    return events;
+    const eventList = events.map(event => {
+      return `${event.start.dateTime} - ${event.end.dateTime}: ${event.summary}`;
+    });
+    return eventList;
   }
 }

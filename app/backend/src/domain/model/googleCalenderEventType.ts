@@ -1,4 +1,4 @@
-export type GoogleCalendarEventType = {
+export type GoogleCalenderEventType = {
   id: string;
   summary: string;
   start: { dateTime: string };

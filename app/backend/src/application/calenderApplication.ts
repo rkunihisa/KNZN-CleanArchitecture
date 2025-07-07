@@ -1,13 +1,15 @@
-import { GoogleCalendarService } from "../domain/service/googleCalenderService";
-import { GoogleCalendarClient } from "../infrastructure/googleCalenderClient";
+import { GoogleCalenderService } from "../domain/service/googleCalenderService";
+import { GoogleCalenderClient } from "../infrastructure/googleCalenderClient";
 
-export class CalendarApplication {
+export class CalenderApplication {
   create() {
     // GoogleCalendarClientを実体化する。こいつの見た目はGoogleCalendarInterface
-    GoogleCalendarClient googleCalendarClient = new GoogleCalendarClient();
-    // GoogleCalendarServiceはGoogleCalendarInterfaceを受け取るので、GoogleCalendarClientを渡せる
-    GoogleCalendarService googleCalendarService = new GoogleCalendarService(googleCalendarClient);
+    const googleCalenderClient = new GoogleCalenderClient();
+    // GoogleCalenderServiceはGoogleCalenderInterfaceを受け取るので、GoogleCalenderClientを渡せる
+    const googleCalenderService = new GoogleCalenderService(googleCalenderClient);
 
-    event = googleCalendarService.fetch()
+    const eventList = googleCalenderService.createEventList()
+
+    return eventList;
   }
 }

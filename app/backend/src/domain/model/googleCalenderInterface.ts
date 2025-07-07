@@ -1,10 +1,5 @@
-export interface GoogleCalendarInterface {
-  fetchEvents(): Promise<GoogleCalendarEventType[]>;
-}
+import { GoogleCalenderEventType } from './googleCalenderEventType';
 
-export type GoogleCalendarEventType = {
-  id: string;
-  summary: string;
-  start: { dateTime: string };
-  end: { dateTime: string };
+export interface GoogleCalenderInterface {
+  fetchEvents(): Promise<GoogleCalenderEventType[]>;
 }
