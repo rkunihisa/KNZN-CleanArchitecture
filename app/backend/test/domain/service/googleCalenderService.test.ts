@@ -1,37 +1,35 @@
-import { GoogleCalenderService } from '../../../src/domain/service/googleCalenderService';
+import { mock } from 'jest-mock-extended';
 
-// GoogleCalenderInterfaceをモック化
-jest.mock('../../../src/domain/model/googleCalenderInterface', () => {
-  return {
-    GoogleCalenderMock: jest.fn().mockImplementation(() => ({
-      fetchEvents: jest.fn().mockResolvedValue([{
-        id: '1',
-        summary: 'テストイベント1',
-        start: { datetime: '2025-07-01T08:00:00+09:00' },
-        end: { datetime: '2025-07-02T08:00:00+09:00' }
-      },
-      {
-        id: '2',
-        summary: 'テストイベント2',
-        start: { datetime: '2025-07-02T08:00:00+09:00' },
-        end: { datetime: '2025-07-03T08:00:00+09:00' }
-      }
-      ])
-    }))
-  };
-});
+import { GoogleCalenderService } from '@src/domain/service/googleCalenderService';
+import { GoogleCalenderInterface } from '@src/domain/model/googleCalenderInterface';
 
 describe('GoogleCalenderService', () => {
   it('createEventList()で文字列が返る', async () => {
     // Arrange
-    const { GoogleCalenderMock } = require('../../../src/domain/model/googleCalenderInterface');
-    const googleCalenderMockInstance = new GoogleCalenderMock();
-    const googleCalenderService = new GoogleCalenderService(googleCalenderMockInstance);
+    const googleCalenderMock = mock<GoogleCalenderInterface>();
+    googleCalenderMock.fetchEvents.mockResolvedValue([
+      {
+        id: '1',
+        summary: 'テストイベント1',
+        start: { dateTime: '2025-07-01T08:00:00+09:00' },
+        end: { dateTime: '2025-07-02T08:00:00+09:00' }
+      },
+      {
+        id: '2',
+        summary: 'テストイベント2',
+        start: { dateTime: '2025-07-02T08:00:00+09:00' },
+        end: { dateTime: '2025-07-03T08:00:00+09:00' }
+      }
+    ]);
+    const googleCalenderService = new GoogleCalenderService(googleCalenderMock);
+
     // Act
     const result = await googleCalenderService.createEventList();
+
     // Assert
     expect(result).toEqual([
-      '2025-07-01T08:00:00Z - 2025-07-02T11:00:00Z: テストイベント'
+      '2025-07-01T08:00:00+09:00 - 2025-07-02T08:00:00+09:00: テストイベント1',
+      '2025-07-02T08:00:00+09:00 - 2025-07-03T08:00:00+09:00: テストイベント2'
     ]);
   });
 });

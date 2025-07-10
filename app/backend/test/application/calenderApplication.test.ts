@@ -1,8 +1,8 @@
-import { CalenderApplication } from '../../src/application/calenderApplication';
+import { CalenderApplication } from '@src/application/calenderApplication';
 
 // GoogleCalenderServiceとGoogleCalenderClientをモック化
-jest.mock('../infrastructure/googleCalenderClient');
-jest.mock('../domain/service/googleCalenderService', () => {
+jest.mock('@src/infrastructure/googleCalenderClient');
+jest.mock('@src/domain/service/googleCalenderService', () => {
   return {
     GoogleCalenderService: jest.fn().mockImplementation(() => ({
       createEventList: jest.fn().mockResolvedValue([
