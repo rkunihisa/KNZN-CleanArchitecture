@@ -1,4 +1,4 @@
-import { CalenderApplication } from '../application/calenderApplication';
+import { CalenderApplication } from '../../src/application/calenderApplication';
 
 // GoogleCalenderServiceとGoogleCalenderClientをモック化
 jest.mock('../infrastructure/googleCalenderClient');

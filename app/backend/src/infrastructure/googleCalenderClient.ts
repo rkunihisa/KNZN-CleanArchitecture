@@ -19,6 +19,7 @@ export class GoogleCalenderClient implements GoogleCalenderInterface {
     const calendar = google.calendar({ version: 'v3', auth });
 
     const now = new Date().toISOString();
+
     const res = await calendar.events.list({
       calendarId: 'primary',
       timeMin: now,

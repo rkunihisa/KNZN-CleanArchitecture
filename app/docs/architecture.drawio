@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="niAdLdi80qrLJaAo3Kac" name="Page-1">
-        <mxGraphModel dx="1254" dy="417" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="411" dy="304" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -31,7 +31,7 @@
                 <mxCell id="17" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="12" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="GoogleCalenderService:&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;fetch()&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="12" value="GoogleCalenderService:&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;createEventList()&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="490" y="305" width="170" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="TimeCardModel:&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;id(str)&lt;br&gt;&lt;/font&gt;&lt;div&gt;time(datetime)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;text(str)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
