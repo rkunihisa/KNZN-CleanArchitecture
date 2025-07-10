@@ -3,10 +3,22 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   roots: ["<rootDir>/test", "<rootDir>/src"],
+  transform: {
+    // @swc/jestを使用してテストを高速に実行する
+    '^.+\\.tsx?$': ['@swc/jest', {}],
+  },
+   moduleNameMapper: {
+    '^@src/(.*)$': '<rootDir>/src/$1',
+  },
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/dist/",
+    "<rootDir>/src/index.ts"],
   collectCoverage: true,
   collectCoverageFrom: [
     "**/*.ts",
     "!**/node_modules/**",
+    "!**/index.ts",
   ],
   // coverageDirectory: 'coverage_dir',
 };
