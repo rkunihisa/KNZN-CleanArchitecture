@@ -1,4 +1,5 @@
 import { GoogleMailInterface } from "../model/googleMailInterface";
+import { GoogleMailType } from "../model/googleMailType";
 
 export class GoogleMailService {
     private googleMail: GoogleMailInterface;
@@ -8,13 +9,22 @@ export class GoogleMailService {
     }
 
   // - メソッド1. 取得したメールタイトルの一覧を格納したlistを返す
-  async getMailTitles(): Promise<string[]> {
-    const fetchedMails = await this.googleMail.fetchMails();
+  async getMailTitles(): Promise<string[]> {    
+    const fetchedMails = await this.fetch()
     const fetchedMailTitles = fetchedMails.map((value) => value["title"])
     return fetchedMailTitles
   }
 
-  // - メソッド2. メールの本文の最初の10文字を格納したlistを返す
+  // - メソッド2. メールの本文の最初のn文字を格納したlistを返す
+  async getContentsChara(number : number): Promise<string[]> {
+    const fetchedMails = await this.fetch()
+    const fetchedMailContents = fetchedMails.map((value) => value["content"].slice(0,number))
+    return fetchedMailContents
+  }
+  
   // - メソッド3. 一番新しいメールのタイトルを返す
 
+  private async fetch(): Promise<GoogleMailType[]> {
+    return await this.googleMail.fetchMails();
+  }
 }
