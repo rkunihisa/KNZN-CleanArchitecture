@@ -57,9 +57,20 @@ describe('GoogleMailService', () => {
     ])
   })
   
-  
   // - メソッド3. 一番新しいメールのタイトルを返す
-  // it('()で一番新しいメールのタイトルを返す')
+  it('getLatestMailTitle()で一番新しいメールのタイトルを返す', async () => {
+    //Arrange
+    const googleMailService = new GoogleMailService(googleMailMock);
+
+    //Act
+    const result = await googleMailService.getLatestMailTitle();
+
+    //Assert
+    expect(result).toEqual(
+      "3の件"
+    )
+  })
+
 })
 
 

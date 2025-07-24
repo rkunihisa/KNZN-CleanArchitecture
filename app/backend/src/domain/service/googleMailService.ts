@@ -23,6 +23,24 @@ export class GoogleMailService {
   }
   
   // - メソッド3. 一番新しいメールのタイトルを返す
+  async getLatestMailTitle(): Promise<string> {
+    const fetchedMails = await this.fetch()
+    // publishedAtのdatetimeが最新のtitleだけほしい
+    let latestMailTitle = "";
+    let latestDate;
+    for (let mail of fetchedMails){
+      const date = mail["publishedAt"]["dateTime"]
+      if (latestDate == null){
+        latestDate = date
+        latestMailTitle = mail["title"]
+      }
+      if (latestDate < date) {
+        latestDate = date
+        latestMailTitle = mail["title"]
+      }
+    }
+    return latestMailTitle
+  }
 
   private async fetch(): Promise<GoogleMailType[]> {
     return await this.googleMail.fetchMails();
