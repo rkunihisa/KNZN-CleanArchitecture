@@ -13,13 +13,7 @@ KNZN-CleanArchitecture/
 │       │   └── infrastructure/ # インフラ層（DB, 外部API, 実装）
 │       ├── test/               # テストコード
 │       └── ...（設定ファイル等）
-├── packages/
-│   ├── shared/           # 型定義・共通ユーティリティ
-│   └── ...
 ├── .github/              # CI/CDワークフロー
-├── package.json          # ルート依存管理
-├── pnpm-workspace.yaml   # (pnpmの場合)
-├── turbo.json            # (Turborepoの場合)
 └── README.md
 ```
 

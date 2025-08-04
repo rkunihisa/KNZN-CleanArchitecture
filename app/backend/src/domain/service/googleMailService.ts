@@ -9,7 +9,7 @@ export class GoogleMailService {
     }
 
   // - メソッド1. 取得したメールタイトルの一覧を格納したlistを返す
-  async getMailTitles(): Promise<string[]> {    
+  async getMailTitles(): Promise<string[]> {
     const fetchedMails = await this.fetch()
     const fetchedMailTitles = fetchedMails.map((value) => value["title"])
     return fetchedMailTitles
@@ -21,25 +21,25 @@ export class GoogleMailService {
     const fetchedMailContents = fetchedMails.map((value) => value["content"].slice(0,number))
     return fetchedMailContents
   }
-  
+
   // - メソッド3. 一番新しいメールのタイトルを返す
   async getLatestMailTitle(): Promise<string> {
     const fetchedMails = await this.fetch()
     // publishedAtのdatetimeが最新のtitleだけほしい
     let latestMailTitle = "";
     let latestDate;
-    for (let mail of fetchedMails){
-      const date = mail["publishedAt"]["dateTime"]
-      if (latestDate == null){
-        latestDate = date
-        latestMailTitle = mail["title"]
+    for (const mail of fetchedMails) {
+      const date = mail["publishedAt"]["dateTime"];
+      if (latestDate == null) {
+        latestDate = date;
+        latestMailTitle = mail["title"];
       }
       if (latestDate < date) {
-        latestDate = date
-        latestMailTitle = mail["title"]
+        latestDate = date;
+        latestMailTitle = mail["title"];
       }
     }
-    return latestMailTitle
+    return latestMailTitle;
   }
 
   private async fetch(): Promise<GoogleMailType[]> {
