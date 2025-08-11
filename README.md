@@ -5,7 +5,6 @@
 ```
 KNZN-CleanArchitecture/
 ├── apps/
-│   ├── frontend/         # Vue.js/Nuxt.js（フロントエンドアプリ）
 │   └── backend/          # Node.js + TypeScript（バックエンドAPI）
 │       ├── src/
 │       │   ├── application/    # アプリケーションサービス層（ユースケース）
@@ -18,5 +17,3 @@ KNZN-CleanArchitecture/
 ```
 
 - backendは`src/`配下でDDD+Clean Architectureのレイヤー分離を徹底
-- 共通ロジックや型は`packages/`で管理し、フロント・バックで再利用
-- モノレポ管理にはpnpm/yarn workspacesやTurborepo推奨
