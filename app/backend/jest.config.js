@@ -2,7 +2,7 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  roots: ["<rootDir>/test", "<rootDir>/src"],
+  roots: ["<rootDir>/tests", "<rootDir>/src"],
   transform: {
     // @swc/jestを使用してテストを高速に実行する
     '^.+\\.tsx?$': ['@swc/jest', {}],

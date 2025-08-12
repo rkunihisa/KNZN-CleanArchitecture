@@ -40,7 +40,7 @@ describe('GoogleMailService', () => {
     ])
   })
 
-  // メソッド2,3はテストから先に書く（TDD） 
+  // メソッド2,3はテストから先に書く（TDD）
   // - メソッド2. メールの本文の最初か任意のn文字を格納したlistを返す
   it('getContentsChara()でメール本文の最初の5文字を格納した一覧が返る', async () => {
     //Arrange
@@ -56,7 +56,7 @@ describe('GoogleMailService', () => {
       "お疲れ様で"
     ])
   })
-  
+
   // - メソッド3. 一番新しいメールのタイトルを返す
   it('getLatestMailTitle()で一番新しいメールのタイトルを返す', async () => {
     //Arrange
