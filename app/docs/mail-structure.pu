@@ -20,7 +20,7 @@ package "domain" {
     }
 }
 
-package "test" {
+package "tests" {
     class GoogleMailServiceTest {
     }
 }
