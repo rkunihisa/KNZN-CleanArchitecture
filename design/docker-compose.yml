@@ -1,0 +1,14 @@
+# To run the PlantUML server in the background, use the following command:
+# docker-compose up -d
+
+# This ensures the service runs in detached mode, allowing you to continue using the terminal.
+
+version: "3.8"
+
+services:
+  plantuml:
+    image: plantuml/plantuml-server:jetty
+    container_name: plantuml-server
+    ports:
+      - "8080:8080"
+    restart: always

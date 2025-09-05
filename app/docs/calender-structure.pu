@@ -1,0 +1,37 @@
+@startuml CleanArchitecture
+
+package "application" {
+  class CalenderApplication {
+    +create(): Promise<string[]>
+  }
+}
+package "domain" {
+  package "model" {
+    class GoogleCalenderEventType {
+      +id: string
+      +summary: string
+      +start: { dateTime: string }
+      +end: { dateTime: string }
+    }
+    interface GoogleCalenderInterface {
+      +fetchEvents(): Promise<GoogleCalenderEventType[]>
+    }
+  }
+  package "service" {
+    class GoogleCalenderService {
+      -googleCalendar: GoogleCalenderInterface
+      +createEventList(): Promise<string[]>
+    }
+  }
+}
+package "infrastructure" {
+  class GoogleCalenderClient {
+    +fetchEvents(): Promise<GoogleCalenderEventType[]>
+  }
+}
+
+GoogleCalenderService --> GoogleCalenderInterface : uses
+CalenderApplication --> GoogleCalenderService : uses
+CalenderApplication --> GoogleCalenderClient : uses
+GoogleCalenderClient ..|> GoogleCalenderInterface
+@enduml

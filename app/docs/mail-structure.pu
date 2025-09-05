@@ -1,0 +1,30 @@
+@startuml GoogleMailServiceStructure
+
+package "domain" {
+    package "model" {
+        class GoogleMailType {
+            +id: string
+            +title: string
+            +content: string
+            +publishedAt: { dateTime: string }
+        }
+        interface GoogleMailInterface {
+            +fetchMails(): Promise<GoogleMailType[]>
+        }
+    }
+
+    package "service" {
+        class GoogleMailService {
+            -googleMail: GoogleMailInterface
+        }
+    }
+}
+
+package "tests" {
+    class GoogleMailServiceTest {
+    }
+}
+
+GoogleMailService --> GoogleMailInterface : uses
+GoogleMailServiceTest ..> GoogleMailService : test
+@enduml
