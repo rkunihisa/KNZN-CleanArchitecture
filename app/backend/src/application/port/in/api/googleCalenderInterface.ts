@@ -1,4 +1,4 @@
-import { GoogleCalenderEventType } from './googleCalenderEventType';
+import { GoogleCalenderEventType } from './service/googleCalenderEventType';
 
 export interface GoogleCalenderInterface {
   fetchEvents(): Promise<GoogleCalenderEventType[]>;
