@@ -1,16 +1,14 @@
-import { GoogleMailInterface } from "../model/googleMailInterface";
-import { GoogleMailType } from "../model/googleMailType";
+import { MailPort } from "../../port/in/api/mailPort";
+import { MailType } from "../model/mailType";
 
-export class GoogleMailService {
-  private googleMail: GoogleMailInterface;
-
-  constructor(googleMail: GoogleMailInterface) {
-    this.googleMail = googleMail;
+export class MailService {
+  private mail: MailPort;
+  constructor(mail: MailPort) {
+    this.mail = mail;
   }
 
   // - メソッド1. 取得したメールタイトルの一覧を格納したlistを返す
   async getMailTitles(): Promise<string[]> {
-    // const fetchedMails = await this.googleMail.fetchMails();
     const fetchedMails = await this.fetch();
     const fetchedMailTitles = fetchedMails.map((value) => value["title"])
     return fetchedMailTitles
@@ -18,7 +16,6 @@ export class GoogleMailService {
 
   // - メソッド2. メールの本文の最初のn文字を格納したlistを返す
   async getContentsChara(n: number): Promise<string[]> {
-    // const fetchedMails = await this.googleMail.fetchMails();
     const fetchedMails = await this.fetch();
     const fetchedSlicedMailContents = fetchedMails.map((value) => value["content"].slice(0, n))
     return fetchedSlicedMailContents
@@ -37,7 +34,7 @@ export class GoogleMailService {
     return sorted[0].title;
   }
 
-  private async fetch(): Promise<GoogleMailType[]> {
-    return await this.googleMail.fetchMails();
+  private async fetch(): Promise<MailType[]> {
+    return await this.mail.fetchMails();
   }
 }
