@@ -1,9 +1,10 @@
-import { GoogleMailService } from "@src/domain/service/googleMailService";
-import { GoogleMailInterface } from "@src/domain/model/googleMailInterface";
 import { mock } from 'jest-mock-extended';
 
-const googleMailMock = mock<GoogleMailInterface>();
-googleMailMock.fetchMails.mockResolvedValue([
+import { MailService } from "@src/application/domain/service/mailService";
+import { MailPort } from "@src/application/port/in/api/mailPort";
+
+const mailMock = mock<MailPort>();
+mailMock.fetchMails.mockResolvedValue([
   {
     id: "01",
     title: "1の件",
@@ -25,13 +26,12 @@ googleMailMock.fetchMails.mockResolvedValue([
 ])
 
 describe('GoogleMailService', () => {
-  // - メソッド1: 取得したメールタイトルの一覧を格納したlistを返す
   it('getMailTitles()でメールタイトルの一覧が返る', async () => {
     //Arrange
-    const googleMailService = new GoogleMailService(googleMailMock);
+    const mailService = new MailService(mailMock);
 
     //Act
-    const result = await googleMailService.getMailTitles();
+    const result = await mailService.getMailTitles();
 
     //Assert
     expect(result).toEqual([
@@ -41,13 +41,12 @@ describe('GoogleMailService', () => {
     ])
   })
 
-  // - メソッド2. メールの本文の最初か任意のn文字を格納したlistを返す
   it('getContentsChara()でメール本文の最初の5文字を格納した一覧が返る', async () => {
     //Arrange
-    const googleMailService = new GoogleMailService(googleMailMock);
+    const mailService = new MailService(mailMock);
 
     //Act
-    const result = await googleMailService.getContentsChara(5);
+    const result = await mailService.getContentsChara(5);
 
     //Assert
     expect(result).toEqual([
@@ -57,20 +56,18 @@ describe('GoogleMailService', () => {
     ])
   })
 
-  // - メソッド3. 一番新しいメールのタイトルを返す
   it('getLatestMailTitle()で一番新しいメールのタイトルを返す', async () => {
     //Arrange
-    const googleMailService = new GoogleMailService(googleMailMock);
+    const mailService = new MailService(mailMock);
 
     //Act
-    const result = await googleMailService.getLatestMailTitle();
+    const result = await mailService.getLatestMailTitle();
 
     //Assert
     expect(result).toEqual(
       "3の件"
     )
   })
-
 })
 
 

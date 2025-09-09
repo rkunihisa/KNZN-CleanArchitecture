@@ -7,8 +7,9 @@ KNZN-CleanArchitecture/
 ├── apps/
 │   └── backend/          # Node.js + TypeScript（バックエンドAPI）
 │       ├── src/
-│       │   ├── application/    # アプリケーションサービス層（ユースケース）
-│       │   ├── domain/         # ドメイン層（エンティティ・値オブジェクト・インターフェース）
+│       │   ├── adapter/        # アダプタ層
+│       │   ├── application/    # アプリケーション層（ユースケース）
+│       │   ├── commmon/        # ドメイン層（エンティティ・値オブジェクト・インターフェース）
 │       │   └── infrastructure/ # インフラ層（DB, 外部API, 実装）
 │       ├── test/               # テストコード
 │       └── ...（設定ファイル等）
