@@ -1,11 +1,17 @@
 import { CalenderService } from "../../../application/domain/service/calenderService";
-import { GoogleCalenderClient } from "../api/googleCalenderClient";
+import { GoogleCalenderClient } from "../infrastructure/googleCalenderClient";
 
-export class GetCalenderEventsController {
+class GetCalenderEventsController {
   async create() {
-    const googleCalenderClient = new GoogleCalenderClient();
-    const calenderService = new CalenderService(googleCalenderClient);
-    const eventList = await calenderService.createEventList()
     return eventList;
   }
+}
+
+// このファイルが直接実行された場合のみmain()を実行
+if (require.main === module) {
+  const googleCalenderClient = new GoogleCalenderClient();
+  const calenderService = new CalenderService(googleCalenderClient);
+  const getCalenderEventsController = new GetCalenderEventsController(calenderService);
+  const eventList = getCalenderEventsController.create();
+  console.log(eventList);
 }
