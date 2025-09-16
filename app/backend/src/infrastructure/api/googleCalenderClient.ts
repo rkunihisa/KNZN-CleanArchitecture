@@ -1,6 +1,6 @@
 import { google } from 'googleapis';
-import type { CalenderPort } from '../../../application/port/in/api/calenderPort';
-import type { CalenderEventType } from '../../../application/domain/model/calenderEventType';
+import type { CalenderPort } from '../../application/port/in/api/calenderPort';
+import type { CalenderEventType } from '../../application/domain/model/calenderEventType';
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';

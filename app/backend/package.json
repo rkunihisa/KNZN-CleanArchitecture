@@ -11,7 +11,7 @@
     "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts",
     "lint": "eslint src --ext .ts",
-    "test": "npx jest",
+    "test": "npx jest --coverage",
     "ci": "npm run lint && npm run test"
   },
   "keywords": [],
