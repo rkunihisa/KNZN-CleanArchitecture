@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import { injectable } from "tsyringe";
 import type { CalenderPort } from '../../application/port/in/api/calenderPort';
 import type { CalenderEventType } from '../../application/domain/model/calenderEventType';
 import fs from 'fs';
@@ -10,6 +11,7 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = path.join(__dirname, '..', '..', '..', '..', 'token.json');
 const CREDENTIALS_PATH = path.join(__dirname, '..', '..', '..', '..', 'credentials.json');
 
+@injectable()
 export class GoogleCalenderClient implements CalenderPort {
   async fetchEvents(): Promise<CalenderEventType[]> {
     const auth = await this.authorize();
