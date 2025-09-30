@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { google } from 'googleapis';
 import { injectable } from "tsyringe";
 import type { CalenderPort } from '../../application/port/in/api/calenderPort';

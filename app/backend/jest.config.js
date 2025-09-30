@@ -21,6 +21,7 @@ module.exports = {
     "!**/node_modules/**",
     "!**/index.ts",
     "!**/infrastructure/**",
+    "!**/di/**",
   ],
   // coverageDirectory: 'coverage_dir',
 };
