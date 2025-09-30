@@ -1,10 +1,10 @@
 import { mock } from 'jest-mock-extended';
 
-import { GoogleCalenderService } from '@src/domain/service/googleCalenderService';
-import { GoogleCalenderInterface } from '@src/domain/model/googleCalenderInterface';
+import { CalenderService } from '@src/application/domain/service/calenderService';
+import { CalenderPort } from '@src/application/port/in/api/calenderPort';
 
-const googleCalenderMock = mock<GoogleCalenderInterface>();
-    googleCalenderMock.fetchEvents.mockResolvedValue([
+const calenderMock = mock<CalenderPort>();
+    calenderMock.fetchEvents.mockResolvedValue([
       {
         id: '1',
         summary: 'テストイベント1',
@@ -19,13 +19,13 @@ const googleCalenderMock = mock<GoogleCalenderInterface>();
       }
     ]);
 
-describe('GoogleCalenderService', () => {
+describe('CalenderService', () => {
   it('createEventList()で文字列が返る', async () => {
     // Arrange
-    const googleCalenderService = new GoogleCalenderService(googleCalenderMock);
+    const calenderService = new CalenderService(calenderMock);
 
     // Act
-    const result = await googleCalenderService.createEventList();
+    const result = await calenderService.createEventList();
 
     // Assert
     expect(result).toEqual([

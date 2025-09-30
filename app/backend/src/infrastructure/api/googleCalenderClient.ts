@@ -1,6 +1,8 @@
+import "reflect-metadata";
 import { google } from 'googleapis';
-import { GoogleCalenderInterface } from '../domain/model/googleCalenderInterface';
-import { GoogleCalenderEventType } from '../domain/model/googleCalenderEventType';
+import { injectable } from "tsyringe";
+import type { CalenderPort } from '../../application/port/in/api/calenderPort';
+import type { CalenderEventType } from '../../application/domain/model/calenderEventType';
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
@@ -10,8 +12,9 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = path.join(__dirname, '..', '..', '..', '..', 'token.json');
 const CREDENTIALS_PATH = path.join(__dirname, '..', '..', '..', '..', 'credentials.json');
 
-export class GoogleCalenderClient implements GoogleCalenderInterface {
-  async fetchEvents(): Promise<GoogleCalenderEventType[]> {
+@injectable()
+export class GoogleCalenderClient implements CalenderPort {
+  async fetchEvents(): Promise<CalenderEventType[]> {
     const auth = await this.authorize();
     if (!auth) {
       throw new Error('Failed to authorize Google Calendar client.');
@@ -34,7 +37,7 @@ export class GoogleCalenderClient implements GoogleCalenderInterface {
       summary: item.summary || '',
       start: { dateTime: item.start?.dateTime || '' },
       end: { dateTime: item.end?.dateTime || '' },
-    })) as GoogleCalenderEventType[];
+    })) as CalenderEventType[];
   }
 
   // 認証を行い、OAuth2クライアントを返す

@@ -11,7 +11,7 @@
     "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts",
     "lint": "eslint src --ext .ts",
-    "test": "npx jest",
+    "test": "npx jest --coverage",
     "ci": "npm run lint && npm run test"
   },
   "keywords": [],
@@ -36,6 +36,8 @@
     "typescript-eslint": "^8.35.0"
   },
   "dependencies": {
-    "googleapis": "^150.0.1"
+    "googleapis": "^150.0.1",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.10.0"
   }
 }

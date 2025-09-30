@@ -14,4 +14,4 @@ jobs:
         with:
           node-version: '20'
       - run: cd app/backend && npm install
-      - run: cd app/backend && npx jest
+      - run: cd app/backend && npm run ci

@@ -1,4 +1,4 @@
-export type GoogleMailType = {
+export type MailType = {
   id: string;
   title: string;
   content: string;
